@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{727C7ED7-78AE-4041-B101-E369158875EF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AuctionSystemORM</RootNamespace>
+    <AssemblyName>AuctionSystemORM</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Database\Auction.cs" />
+    <Compile Include="Database\Category.cs" />
+    <Compile Include="Database\City.cs" />
+    <Compile Include="Database\Company.cs" />
+    <Compile Include="Database\Country.cs" />
+    <Compile Include="Database\dao_sqls\AuctionTable.cs" />
+    <Compile Include="Database\dao_sqls\CategoryTable.cs" />
+    <Compile Include="Database\dao_sqls\CompanyTable.cs" />
+    <Compile Include="Database\dao_sqls\CountryTable.cs" />
+    <Compile Include="Database\dao_sqls\Database.cs" />
+    <Compile Include="Database\dao_sqls\CityTable.cs" />
+    <Compile Include="Database\dao_sqls\DepotTable.cs" />
+    <Compile Include="Database\dao_sqls\PhotoTable.cs" />
+    <Compile Include="Database\dao_sqls\PlaceTable.cs" />
+    <Compile Include="Database\dao_sqls\UserTable.cs" />
+    <Compile Include="Database\dao_sqls\VehicleHistoryTable.cs" />
+    <Compile Include="Database\dao_sqls\VehicleModelTable.cs" />
+    <Compile Include="Database\dao_sqls\VehicleTable.cs" />
+    <Compile Include="Database\Depot.cs" />
+    <Compile Include="Database\Photo.cs" />
+    <Compile Include="Database\Place.cs" />
+    <Compile Include="Database\User.cs" />
+    <Compile Include="Database\Vehicle.cs" />
+    <Compile Include="Database\VehicleHistory.cs" />
+    <Compile Include="Database\VehicleModel.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
