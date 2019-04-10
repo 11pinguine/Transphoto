@@ -14,5 +14,11 @@ namespace AuctionSystem.ORM
         public DateTime EndDate { get; set; }
         public String CarLicensePlate { get; set; }
         public String Podtyp { get; set; }
+
+        public Vehicle vehicle;
+        public Depot depot;
+  
+        public City city;
+
     }
 }

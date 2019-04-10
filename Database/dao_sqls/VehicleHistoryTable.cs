@@ -227,15 +227,12 @@ namespace AuctionSystem.ORM.DAO.Sqls
                 vehicleHistory.CarLicensePlate = reader.GetString(++i);
                 vehicleHistory.Podtyp = reader.GetString(++i);
 
-
-
-
-
-
                 vehicleHistories.Add(vehicleHistory);
             }
             return vehicleHistories;
         }
+
+
 
         // It is not a function from the functional analysis
         // it is an example how to work with stored procedures
