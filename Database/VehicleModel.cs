@@ -17,7 +17,7 @@ namespace AuctionSystem.ORM
         public float Length { get; set; }
         public float Width { get; set; }
         public float Height { get; set; }
-        public int Weight { get; set; }
+        public int? Weight { get; set; }
         public int MaxSpeed { get; set; }
         public bool LowFloor { get; set; }
         public String PoweredBy { get; set; }

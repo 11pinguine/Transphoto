@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Collections.Generic;
+
 
 namespace AuctionSystem.ORM
 {
@@ -18,10 +19,9 @@ namespace AuctionSystem.ORM
         public String Podtyp { get; set; }
 
         public VehicleModel vehicleModel; // M:1
-        public Collection<VehicleHistory>  vehicleHistory; //1:N
+        //public Collection<VehicleHistory>  vehicleHistory; //1:N
         public Photo photo; //M:N
+        public Depot depot;
         public City city;
-
-
     }
 }

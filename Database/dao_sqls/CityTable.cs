@@ -8,10 +8,10 @@ namespace AuctionSystem.ORM.DAO.Sqls
     public class CityTable
     {
         public static String SQL_SELECT = "SELECT * FROM City";
-        public static String SQL_SELECT_ID = "SELECT * FROM City WHERE idCity=@id";
+        public static String SQL_SELECT_ID = "SELECT * FROM City WHERE id=@id";
         public static String SQL_INSERT = "INSERT INTO City VALUES (@name, @region, @countryid)";
-        public static String SQL_DELETE_ID = "DELETE FROM City WHERE idCity=@id";
-        public static String SQL_UPDATE = "UPDATE City SET name=@name, region=@region, countryid=@country_id WHERE idCity=@id";
+        public static String SQL_DELETE_ID = "DELETE FROM City WHERE id=@id";
+        public static String SQL_UPDATE = "UPDATE City SET name=@name, region=@region, countryid=@country_id WHERE id=@id";
 
         /// <summary>
         /// Insert the record.
@@ -175,9 +175,7 @@ namespace AuctionSystem.ORM.DAO.Sqls
             command.Parameters.AddWithValue("@id", City.Id);
             command.Parameters.AddWithValue("@name", City.Name);
             command.Parameters.AddWithValue("@region", City.Region);
-            command.Parameters.AddWithValue("@country_id", City.CountryID);
-
-
+            command.Parameters.AddWithValue("@country_id", City.Country.Id);
         }
 
         private static Collection<City> Read(SqlDataReader reader)
@@ -191,8 +189,7 @@ namespace AuctionSystem.ORM.DAO.Sqls
                 city.Id = reader.GetInt32(++i);
                 city.Name = reader.GetString(++i);
                 city.Region = reader.GetString(++i);
-                
-                
+                city.Country = CountryTable.Select(reader.GetInt32(++i));
 
                 cities.Add(city);
             }

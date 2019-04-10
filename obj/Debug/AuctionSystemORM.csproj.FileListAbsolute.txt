@@ -5,3 +5,9 @@ C:\Users\Saša\Downloads\ORM my\AuctionSystemORM_sqls\obj\Debug\AuctionSystemORM
 C:\Users\Saša\Downloads\ORM my\AuctionSystemORM_sqls\obj\Debug\AuctionSystemORM.csproj.CoreCompileInputs.cache
 C:\Users\Saša\Downloads\ORM my\AuctionSystemORM_sqls\obj\Debug\AuctionSystemORM.exe
 C:\Users\Saša\Downloads\ORM my\AuctionSystemORM_sqls\obj\Debug\AuctionSystemORM.pdb
+D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\bin\Debug\AuctionSystemORM.exe.config
+D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\obj\Debug\AuctionSystemORM.exe
+D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\obj\Debug\AuctionSystemORM.pdb
+D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\obj\Debug\AuctionSystemORM.csprojResolveAssemblyReference.cache
+D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\bin\Debug\AuctionSystemORM.exe
+D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\bin\Debug\AuctionSystemORM.pdb

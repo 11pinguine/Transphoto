@@ -8,10 +8,10 @@ namespace AuctionSystem.ORM.DAO.Sqls
     public class CompanyTable
     {
         public static String SQL_SELECT = "SELECT * FROM Company";
-        public static String SQL_SELECT_ID = "SELECT * FROM Company WHERE idCompany=@id";
+        public static String SQL_SELECT_ID = "SELECT * FROM Company WHERE id=@id";
         public static String SQL_INSERT = "INSERT INTO Company VALUES (@name)";
-        public static String SQL_DELETE_ID = "DELETE FROM Company WHERE idCompany=@id";
-        public static String SQL_UPDATE = "UPDATE Company SET name=@name WHERE idCompany=@id";
+        public static String SQL_DELETE_ID = "DELETE FROM Company WHERE id=@id";
+        public static String SQL_UPDATE = "UPDATE Company SET name=@name WHERE id=@id";
 
         /// <summary>
         /// Insert the record.

@@ -8,10 +8,10 @@ namespace AuctionSystem.ORM.DAO.Sqls
     public class CountryTable
     {
         public static String SQL_SELECT = "SELECT * FROM Country";
-        public static String SQL_SELECT_ID = "SELECT * FROM Country WHERE idCountry=@id";
+        public static String SQL_SELECT_ID = "SELECT * FROM Country WHERE id=@id";
         public static String SQL_INSERT = "INSERT INTO Country VALUES (@name, @continent)";
-        public static String SQL_DELETE_ID = "DELETE FROM Country WHERE idCountry=@id";
-        public static String SQL_UPDATE = "UPDATE Country SET name=@name, continent=@continent WHERE idCountry=@id";
+        public static String SQL_DELETE_ID = "DELETE FROM Country WHERE id=@id";
+        public static String SQL_UPDATE = "UPDATE Country SET name=@name, continent=@continent WHERE id=@id";
 
         /// <summary>
         /// Insert the record.
@@ -191,9 +191,6 @@ namespace AuctionSystem.ORM.DAO.Sqls
                 country.Id = reader.GetInt32(++i);
                 country.Name = reader.GetString(++i);
                 country.Continent = reader.GetString(++i);
-
-
-
                 countries.Add(country);
             }
             return countries;

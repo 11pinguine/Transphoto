@@ -8,9 +8,9 @@ namespace AuctionSystem.ORM.DAO.Sqls
     public class VehicleTable
     {
         public static String SQL_SELECT = "SELECT * FROM Vehicle";
-        public static String SQL_SELECT_ID = "SELECT * FROM Vehicle WHERE idVehicle=@id";
+        public static String SQL_SELECT_ID = "SELECT * FROM Vehicle WHERE id=@id";
         public static String SQL_INSERT = "INSERT INTO Vehicle VALUES (@construction_year, @state, @evidence_id, @main_photo_path, @car_license_plate, @podtyp)";
-        public static String SQL_DELETE_ID = "DELETE FROM Vehicle WHERE idVehicle=@id";
+        public static String SQL_DELETE_ID = "DELETE FROM Vehicle WHERE id=@id";
         public static String SQL_UPDATE = "UPDATE Vehicle SET construction_year=@construction_year, state=@state, evidence_id=@evidence_id, main_photo_path=@main_photo_path, car_license_plate=@car_license_plate, podtyp=@podtyp WHERE idVehicle=@id";
 
         /// <summary>
@@ -195,12 +195,12 @@ namespace AuctionSystem.ORM.DAO.Sqls
                 vehicle.ConstructionYear = reader.GetInt32(++i);
                 vehicle.State = reader.GetString(++i);
                 vehicle.EvidenceId = reader.GetString(++i);
-                vehicle.MainPhotoPath = reader.GetString(++i);
-                vehicle.CarLicensePlate = reader.GetString(++i);
-                vehicle.Podtyp = reader.GetString(++i);
-
-
-
+                vehicle.MainPhotoPath =  (reader.IsDBNull(++i))? "": reader.GetString(i);
+                vehicle.CarLicensePlate = (reader.IsDBNull(++i)) ? "" : reader.GetString(i);
+                vehicle.vehicleModel = VehicleModelTable.Select(reader.GetInt32(++i));
+                vehicle.city = CityTable.Select(reader.GetInt32(++i));
+                vehicle.depot = DepotTable.Select(reader.GetInt32(++i));
+                vehicle.Podtyp = reader.GetString(++i);               
 
 
                 vehicles.Add(vehicle);

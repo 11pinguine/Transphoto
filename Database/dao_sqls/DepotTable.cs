@@ -8,10 +8,10 @@ namespace AuctionSystem.ORM.DAO.Sqls
     public class DepotTable
     {
         public static String SQL_SELECT = "SELECT * FROM Depot";
-        public static String SQL_SELECT_ID = "SELECT * FROM Depot WHERE idDepot=@id";
+        public static String SQL_SELECT_ID = "SELECT * FROM Depot WHERE id=@id";
         public static String SQL_INSERT = "INSERT INTO Depot VALUES (@name)";
-        public static String SQL_DELETE_ID = "DELETE FROM Depot WHERE idDepot=@id";
-        public static String SQL_UPDATE = "UPDATE Depot SET name=@name WHERE idDepot=@id";
+        public static String SQL_DELETE_ID = "DELETE FROM Depot WHERE id=@id";
+        public static String SQL_UPDATE = "UPDATE Depot SET name=@name WHERE id=@id";
 
         /// <summary>
         /// Insert the record.

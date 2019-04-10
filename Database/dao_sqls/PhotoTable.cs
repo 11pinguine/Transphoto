@@ -8,9 +8,9 @@ namespace AuctionSystem.ORM.DAO.Sqls
     public class PhotoTable
     {
         public static String SQL_SELECT = "SELECT * FROM Photo";
-        public static String SQL_SELECT_ID = "SELECT * FROM Photo WHERE idPhoto=@id";
+        public static String SQL_SELECT_ID = "SELECT * FROM Photo WHERE id=@id";
         public static String SQL_INSERT = "INSERT INTO Photo VALUES (@name, @date, @coord_n, @coord_e, @path)";
-        public static String SQL_DELETE_ID = "DELETE FROM Photo WHERE idPhoto=@id";
+        public static String SQL_DELETE_ID = "DELETE FROM Photo WHERE id=@id";
         public static String SQL_UPDATE = "UPDATE Photo SET name=@name, date = @date, coord_n=@coord_n, coord_e=@coord_e, path=@path WHERE idUser=@id";
         public static String SQL_UPLOAD_NEW_MAIN_PHOTO = "INSERT INTO Photo(vehicle_id, date, place_id, coordN, coordE, path) " +
             "VALUES( @p_vehicle_Id, @p_photo, @p_city_id, @p_place_id, @p_coordN, @p_coordE, @p_photo); " +

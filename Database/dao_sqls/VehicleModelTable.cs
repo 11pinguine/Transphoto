@@ -8,13 +8,13 @@ namespace AuctionSystem.ORM.DAO.Sqls
     public class VehicleModelTable
     {
         public static String SQL_SELECT = "SELECT * FROM Vehicle_Model";
-        public static String SQL_SELECT_ID = "SELECT * FROM Vehicle_Model WHERE idVehicleModel=@id";
+        public static String SQL_SELECT_ID = "SELECT * FROM Vehicle_Model WHERE id=@id";
         public static String SQL_INSERT = "INSERT INTO Vehicle_Model VALUES (@manufacturer, @model, @capacity_standing, @capacity_seating, )" +
             "@vehicle_type, @length, @width, @height, @max_speed, @low_floor, @powered_by)";
-        public static String SQL_DELETE_ID = "DELETE FROM Vehicle_Model WHERE idVehicleModel=@id";
+        public static String SQL_DELETE_ID = "DELETE FROM Vehicle_Model WHERE id=@id";
         public static String SQL_UPDATE = "UPDATE Vehicle_Model SET manufacturer=@manufacturer, model=@model, capacity_standing=@capacity_standing, " +
             "capacity_seating=@capacity_seating, vehicle_type=@vehicle_type, length=@length, width=@width, height=@height, max_speed=@max_speed, " +
-            "low_floor=@low_floor, powered_by=@powered_by WHERE idVehicleModel=@id";
+            "low_floor=@low_floor, powered_by=@powered_by WHERE id=@id";
 
         /// <summary>
         /// Insert the record.
@@ -208,10 +208,10 @@ namespace AuctionSystem.ORM.DAO.Sqls
                 vehicleModel.CapacitySeating = reader.GetInt32(++i);
                 vehicleModel.CapacityStanding = reader.GetInt32(++i);
                 vehicleModel.VehicleType = reader.GetString(++i);
-                vehicleModel.Length = reader.GetFloat(++i);
-                vehicleModel.Width = reader.GetFloat(++i);
-                vehicleModel.Height = reader.GetFloat(++i);
-                vehicleModel.Weight = reader.GetInt32(++i);
+                vehicleModel.Length = (float)reader.GetDouble(++i);
+                vehicleModel.Width = (float)reader.GetDouble(++i);
+                vehicleModel.Height = (float)reader.GetDouble(++i);
+                vehicleModel.Weight = !reader.IsDBNull(++i)? reader.GetInt32(i) : 0;
                 vehicleModel.MaxSpeed = reader.GetInt32(++i);
                 vehicleModel.LowFloor = reader.GetBoolean(++i);
                 vehicleModel.PoweredBy = reader.GetString(++i);

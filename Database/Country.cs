@@ -8,5 +8,13 @@ namespace AuctionSystem.ORM
         public String Name { get; set; }
         public String Continent { get; set; }
         
+        public Country(int id, string name, string continent)
+        {
+            this.Id = id;
+            this.Name = name;
+            this.Continent = continent;
+        }
+        public Country() { }
+
     }
 }
