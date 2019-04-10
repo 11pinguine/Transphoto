@@ -12,6 +12,10 @@ namespace AuctionSystem.ORM.DAO.Sqls
         public static String SQL_INSERT = "INSERT INTO Vehicle_History VALUES (@evidence_id, @start_date, @end_date, @car_license_plate, @podtyp)";
         public static String SQL_DELETE_ID = "DELETE FROM Vehicle_History WHERE idVehicleHistory=@id";
         public static String SQL_UPDATE = "UPDATE Vehicle_History SET evidence_id=@evidence_id, start_date=@start_date, end_date=@end_date, car_license_plate=@car_license_plate, podtyp=@podtyp WHERE idVehicleHistory=@id";
+        public static String SQL_ARCHIVE_VEHICLE = "INSERT INTO VehicleHistory(vehicle_id, city_id, depot_id, evidence_id, plate_number, start_date, end_date) " +
+            "SELECT vehicle_id, city_id, depot_id, evidence_id, plate_number, start_date, end_date, @p_start_date, @p_end_date FROM Vehicle WHERE id = @p_id; " +
+            " UPDATE Vehicle SET city_id = @p_city_id, depot_id = @p_depot_id, evidence_id = @p_evidence_id, plate_number = @p_plate_number, state = @p_state WHERE id = @p_id";
+
 
         /// <summary>
         /// Insert the record.
@@ -158,6 +162,31 @@ namespace AuctionSystem.ORM.DAO.Sqls
             SqlCommand command = db.CreateCommand(SQL_DELETE_ID);
 
             command.Parameters.AddWithValue("@id", idVehicleHistory);
+            int ret = db.ExecuteNonQuery(command);
+
+            if (pDb == null)
+            {
+                db.Close();
+            }
+
+            return ret;
+        }
+
+        public static int ArchiveVehicle(VehicleHistory vehicleHistory, Database pDb = null)
+        {
+            Database db;
+            if (pDb == null)
+            {
+                db = new Database();
+                db.Connect();
+            }
+            else
+            {
+                db = (Database)pDb;
+            }
+
+            SqlCommand command = db.CreateCommand(SQL_ARCHIVE_VEHICLE);
+            PrepareCommand(command, vehicleHistory);
             int ret = db.ExecuteNonQuery(command);
 
             if (pDb == null)

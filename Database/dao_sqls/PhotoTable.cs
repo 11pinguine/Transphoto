@@ -12,6 +12,11 @@ namespace AuctionSystem.ORM.DAO.Sqls
         public static String SQL_INSERT = "INSERT INTO Photo VALUES (@name, @date, @coord_n, @coord_e, @path)";
         public static String SQL_DELETE_ID = "DELETE FROM Photo WHERE idPhoto=@id";
         public static String SQL_UPDATE = "UPDATE Photo SET name=@name, date = @date, coord_n=@coord_n, coord_e=@coord_e, path=@path WHERE idUser=@id";
+        public static String SQL_UPLOAD_NEW_MAIN_PHOTO = "INSERT INTO Photo(vehicle_id, date, place_id, coordN, coordE, path) " +
+            "VALUES( @p_vehicle_Id, @p_photo, @p_city_id, @p_place_id, @p_coordN, @p_coordE, @p_photo); " +
+            "UPDATE Vehicle SET main_photo_path= @p_photo WHERE id = @p_id";
+        public static String SQL_MERGE_VEHICLES = "UPDATE Photo SET vehicle_id= @id2 WHERE id=@id1;  " +
+            "DELETE FROM Vehicle WHERE id = @id1 ";
 
         /// <summary>
         /// Insert the record.
@@ -58,6 +63,31 @@ namespace AuctionSystem.ORM.DAO.Sqls
             }
 
             SqlCommand command = db.CreateCommand(SQL_UPDATE);
+            PrepareCommand(command, photo);
+            int ret = db.ExecuteNonQuery(command);
+
+            if (pDb == null)
+            {
+                db.Close();
+            }
+
+            return ret;
+        }
+
+        public static int MergeVehicles(Photo photo, Database pDb = null)
+        {
+            Database db;
+            if (pDb == null)
+            {
+                db = new Database();
+                db.Connect();
+            }
+            else
+            {
+                db = (Database)pDb;
+            }
+
+            SqlCommand command = db.CreateCommand(SQL_MERGE_VEHICLES);
             PrepareCommand(command, photo);
             int ret = db.ExecuteNonQuery(command);
 
@@ -158,6 +188,31 @@ namespace AuctionSystem.ORM.DAO.Sqls
             SqlCommand command = db.CreateCommand(SQL_DELETE_ID);
 
             command.Parameters.AddWithValue("@id", idPhoto);
+            int ret = db.ExecuteNonQuery(command);
+
+            if (pDb == null)
+            {
+                db.Close();
+            }
+
+            return ret;
+        }
+
+        public static int UploadNewMainPhoto(Photo photo, Database pDb = null)
+        {
+            Database db;
+            if (pDb == null)
+            {
+                db = new Database();
+                db.Connect();
+            }
+            else
+            {
+                db = (Database)pDb;
+            }
+
+            SqlCommand command = db.CreateCommand(SQL_UPLOAD_NEW_MAIN_PHOTO);
+            PrepareCommand(command, photo);
             int ret = db.ExecuteNonQuery(command);
 
             if (pDb == null)
