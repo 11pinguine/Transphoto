@@ -22,6 +22,19 @@ namespace AuctionSystem
             {
                 Console.WriteLine(c.Id + " " + c.Name + " " +c.Continent);
             }
+
+            Console.WriteLine("----");
+            int count = CountryTable.Select().Count;
+            Console.Write("Pocet vsech statu ve DB do pridavani: ");
+            Console.WriteLine(count);
+
+            Console.WriteLine("Pridavani statu");
+            CountryTable.Insert(new Country(6, "USA", "Amerika"));
+            count = CountryTable.Select().Count;
+            Console.Write("Pocet vsech statu ve DB po pridavani: ");
+            Console.WriteLine(count);
+            CountryTable.Delete(6);
+            
             Console.WriteLine("----");
 
             Console.WriteLine("Seznam vsech mest ve DB");
@@ -31,23 +44,31 @@ namespace AuctionSystem
             }
             Console.WriteLine("----");
 
-
+            /*
             Console.WriteLine("Seznam vsech vozidel ve DB");
             foreach (Vehicle v in VehicleTable.Select())
             {
                 Console.WriteLine(v.Id + "  Znacka:" + v.vehicleModel.Manufacturer + " Model:" + v.vehicleModel.Model + " Podtyp:" + v.Podtyp + " City:" + v.city.Name + " Depo:" + v.depot.Name );
             }
-
-            //VehicleTable.Insert(u, db);
-            /*
-            int count1 = VehicleTable.Select(db).Count;
-            int dltCount = VehicleTable.Delete(7, db);
-            int count2 = VehicleTable.Select(db).Count;
-
-            Console.WriteLine("#C: " + count1);
-            Console.WriteLine("#D: " + dltCount);
-            Console.WriteLine("#C: " + count2);
             */
+            Console.WriteLine("----");
+            Console.WriteLine("Seznam vsech firem ve DB");
+            foreach (Company c in CompanyTable.Select())
+            {
+                Console.WriteLine(c.Id + " " + c.Name);
+            }
+
+            Console.WriteLine("----");
+            Console.WriteLine("Test procedury UpdateAndArchiveVehicle2");
+            VehicleTable.UpdateAndArchiveVehicle(VehicleTable.Select(1),new DateTime(1999,01,01),new DateTime(2019,04,12));
+
+            Console.WriteLine("----");
+            Console.WriteLine("Test procedury UploadNewMainPhoto22");
+            VehicleTable.UploadNewMainPhoto(VehicleTable.Select(1), "", PlaceTable.Select(1), 10.5, 12.2);
+
+
+
+
             db.Close();
             Console.ReadKey();
         }
