@@ -176,6 +176,7 @@ namespace AuctionSystem.ORM.DAO.Sqls
             command.Parameters.AddWithValue("@p_end_date", EndDate.Date);
             command.Parameters.AddWithValue("@p_city_id", v.city.Id);
             command.Parameters.AddWithValue("@p_depot_id", v.depot.Id);
+            command.Parameters.AddWithValue("@p_depot_id", v.EvidenceId);
             command.Parameters.AddWithValue("@p_plate_number", v.CarLicensePlate);
             command.Parameters.AddWithValue("@p_state", v.State);
 
