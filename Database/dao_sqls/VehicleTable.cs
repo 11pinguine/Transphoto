@@ -14,7 +14,7 @@ namespace AuctionSystem.ORM.DAO.Sqls
         private static String SQL_UPDATE = "UPDATE Vehicle SET construction_year=@construction_year, state=@state, evidence_id=@evidence_id, main_photo_path=@main_photo_path, car_license_plate=@car_license_plate, podtyp=@podtyp WHERE idVehicle=@id";
         private static string SQL_EXEC_UpdateAndArchiveVehicle2 = "exec UpdateAndArchiveVehicle2 @p_Id, @p_start_date,@p_end_date, "+
                                                   "@p_city_id,@p_depot_id, @p_evidence_id, @p_plate_number, @p_state";
-        private static string SQL_EXEC_UploadNewMainPhoto = "exec UploadNewMainPhoto22 @p_vehicle_Id, @p_photo, @p_place_id, @p_coordN, @p_coordE";
+        private static string SQL_EXEC_UploadNewMainPhoto = "exec UploadNewMainPhoto @p_vehicle_Id, @p_photo, @p_place_id, @p_coordN, @p_coordE";
 
 
         /// <summary>
