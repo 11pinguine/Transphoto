@@ -224,7 +224,10 @@ namespace AuctionSystem.ORM.DAO.Sqls
                 vehicleHistory.EvidenceId = reader.GetString(++i);
                 vehicleHistory.StartDate = reader.GetDateTime(++i);
                 vehicleHistory.StartDate = reader.GetDateTime(++i);
-                vehicleHistory.CarLicensePlate = reader.GetString(++i);
+                vehicleHistory.CarLicensePlate = !reader.IsDBNull(++i)?reader.GetString(i):"";
+                vehicleHistory.vehicle = VehicleTable.Select(reader.GetInt32(++i));
+                vehicleHistory.city = CityTable.Select(reader.GetInt32(++i));
+                vehicleHistory.depot = DepotTable.Select(reader.GetInt32(++i));
                 vehicleHistory.Podtyp = reader.GetString(++i);
 
                 vehicleHistories.Add(vehicleHistory);

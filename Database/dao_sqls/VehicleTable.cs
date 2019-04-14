@@ -7,27 +7,22 @@ namespace AuctionSystem.ORM.DAO.Sqls
 {
     public class VehicleTable
     {
-        public static String SQL_SELECT = "SELECT * FROM Vehicle";
-        public static String SQL_SELECT_ID = "SELECT * FROM Vehicle WHERE id=@id";
-        public static String SQL_INSERT = "INSERT INTO Vehicle VALUES (@construction_year, @state, @evidence_id, @main_photo_path, @car_license_plate, @podtyp)";
-        public static String SQL_DELETE_ID = "DELETE FROM Vehicle WHERE id=@id";
-        public static String SQL_UPDATE = "UPDATE Vehicle SET construction_year=@construction_year, state=@state, evidence_id=@evidence_id, main_photo_path=@main_photo_path, car_license_plate=@car_license_plate, podtyp=@podtyp WHERE idVehicle=@id";
+        private static String SQL_SELECT = "SELECT * FROM Vehicle";
+        private static String SQL_SELECT_ID = "SELECT * FROM Vehicle WHERE id=@id";
+        private static String SQL_INSERT = "INSERT INTO Vehicle VALUES (@construction_year, @state, @evidence_id, @main_photo_path, @car_license_plate, @podtyp)";
+        private static String SQL_DELETE_ID = "DELETE FROM Vehicle WHERE id=@id";
+        private static String SQL_UPDATE = "UPDATE Vehicle SET construction_year=@construction_year, state=@state, evidence_id=@evidence_id, main_photo_path=@main_photo_path, car_license_plate=@car_license_plate, podtyp=@podtyp WHERE idVehicle=@id";
+        private static string SQL_EXEC_UpdateAndArchiveVehicle2 = "exec UpdateAndArchiveVehicle2 @p_Id, @p_start_date,@p_end_date, "+
+                                                  "@p_city_id,@p_depot_id, @p_evidence_id, @p_plate_number, @p_state";
+        private static string SQL_EXEC_UploadNewMainPhoto = "exec UploadNewMainPhoto @p_vehicle_Id, @p_photo, @p_place_id, @p_coordN, @p_coordE";
+
 
         /// <summary>
         /// Insert the record.
         /// </summary>
         public static int Insert(Vehicle vehicle, Database pDb = null)
         {
-            Database db;
-            if (pDb == null)
-            {
-                db = new Database();
-                db.Connect();
-            }
-            else
-            {
-                db = (Database)pDb;
-            }
+            Database db = checkDB(pDb);
 
             SqlCommand command = db.CreateCommand(SQL_INSERT);
             PrepareCommand(command, vehicle);
@@ -40,22 +35,13 @@ namespace AuctionSystem.ORM.DAO.Sqls
 
             return ret;
         }
-
+             
         /// <summary>
         /// Update the record.
         /// </summary>
         public static int Update(Vehicle vehicle, Database pDb = null)
         {
-            Database db;
-            if (pDb == null)
-            {
-                db = new Database();
-                db.Connect();
-            }
-            else
-            {
-                db = (Database)pDb;
-            }
+            Database db = checkDB(pDb);
 
             SqlCommand command = db.CreateCommand(SQL_UPDATE);
             PrepareCommand(command, vehicle);
@@ -69,22 +55,12 @@ namespace AuctionSystem.ORM.DAO.Sqls
             return ret;
         }
 
-
         /// <summary>
         /// Select the records.
         /// </summary>
         public static Collection<Vehicle> Select(Database pDb = null)
         {
-            Database db;
-            if (pDb == null)
-            {
-                db = new Database();
-                db.Connect();
-            }
-            else
-            {
-                db = (Database)pDb;
-            }
+            Database db = checkDB(pDb);
 
             SqlCommand command = db.CreateCommand(SQL_SELECT);
             SqlDataReader reader = db.Select(command);
@@ -106,17 +82,7 @@ namespace AuctionSystem.ORM.DAO.Sqls
         /// <param name="id">user id</param>
         public static Vehicle Select(int id, Database pDb = null)
         {
-            Database db;
-            if (pDb == null)
-            {
-                db = new Database();
-                db.Connect();
-            }
-            else
-            {
-                db = (Database)pDb;
-            }
-
+            Database db = checkDB(pDb);
             SqlCommand command = db.CreateCommand(SQL_SELECT_ID);
 
             command.Parameters.AddWithValue("@id", id);
@@ -145,16 +111,7 @@ namespace AuctionSystem.ORM.DAO.Sqls
         /// <returns></returns>
         public static int Delete(int idVehicle, Database pDb = null)
         {
-            Database db;
-            if (pDb == null)
-            {
-                db = new Database();
-                db.Connect();
-            }
-            else
-            {
-                db = (Database)pDb;
-            }
+            Database db = checkDB(pDb);
             SqlCommand command = db.CreateCommand(SQL_DELETE_ID);
 
             command.Parameters.AddWithValue("@id", idVehicle);
@@ -180,6 +137,7 @@ namespace AuctionSystem.ORM.DAO.Sqls
             command.Parameters.AddWithValue("@main_photo_path", Vehicle.MainPhotoPath);
             command.Parameters.AddWithValue("@car_license_plate", Vehicle.CarLicensePlate);
             command.Parameters.AddWithValue("@podtyp", Vehicle.Podtyp);
+
 
         }
 
@@ -208,20 +166,71 @@ namespace AuctionSystem.ORM.DAO.Sqls
             return vehicles;
         }
 
+        public static int UpdateAndArchiveVehicle(Vehicle v, DateTime StartDate, DateTime EndDate, Database pDb = null)
+        {
+            Database db = checkDB(pDb);
+
+            SqlCommand command = db.CreateCommand(SQL_EXEC_UpdateAndArchiveVehicle2);
+            command.Parameters.AddWithValue("@p_Id",v.Id);
+            command.Parameters.AddWithValue("@p_start_date", StartDate.Date);
+            command.Parameters.AddWithValue("@p_end_date", EndDate.Date);
+            command.Parameters.AddWithValue("@p_city_id", v.city.Id);
+            command.Parameters.AddWithValue("@p_depot_id", v.depot.Id);
+            command.Parameters.AddWithValue("@p_evidence_id", v.EvidenceId);
+            command.Parameters.AddWithValue("@p_plate_number", v.CarLicensePlate);
+            command.Parameters.AddWithValue("@p_state", v.State);
+
+            int ret = db.ExecuteNonQuery(command);
+
+            if (pDb == null)
+            {
+                db.Close();
+            }
+
+            return ret;
+
+        }
+
+        public static int UploadNewMainPhoto(Vehicle v, string path, Place place, double N, double E, Database pDb = null)
+        {
+            Database db = checkDB(pDb);
+            SqlCommand command = db.CreateCommand(SQL_EXEC_UploadNewMainPhoto);
+
+            command.Parameters.AddWithValue("@p_vehicle_Id", v.Id);
+            command.Parameters.AddWithValue("@p_photo", path);
+            command.Parameters.AddWithValue("@p_place_id", place.Id);
+            command.Parameters.AddWithValue("@p_coordN", N);
+            command.Parameters.AddWithValue("@p_coordE", E);
+
+            int ret = db.ExecuteNonQuery(command);
+
+            if (pDb == null)
+            {
+                db.Close();
+            }
+
+            return ret;
+        }
+
+        private static Database checkDB(Database pDb = null)
+        {
+            if (pDb == null)
+            {
+                Database db = new Database();
+                db.Connect();
+                return db;
+            }
+            else
+            {
+                return (Database)pDb;
+            }
+        }
+        
         // It is not a function from the functional analysis
         // it is an example how to work with stored procedures
         public static string CheckVehicle(int idVehicle, Database pDb)
         {
-            Database db;
-            if (pDb == null)
-            {
-                db = new Database();
-                db.Connect();
-            }
-            else
-            {
-                db = (Database)pDb;
-            }
+            Database db = checkDB(pDb);
 
             // 1.  create a command object identifying the stored procedure
             SqlCommand command = db.CreateCommand("CheckVehicle");

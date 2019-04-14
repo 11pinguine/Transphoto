@@ -8,10 +8,10 @@ namespace AuctionSystem.ORM.DAO.Sqls
     public class PlaceTable
     {
         public static String SQL_SELECT = "SELECT * FROM Place";
-        public static String SQL_SELECT_ID = "SELECT * FROM Place WHERE idPlace=@id";
+        public static String SQL_SELECT_ID = "SELECT * FROM Place WHERE id = @id";
         public static String SQL_INSERT = "INSERT INTO Place VALUES (@name)";
-        public static String SQL_DELETE_ID = "DELETE FROM Place WHERE idPlace=@id";
-        public static String SQL_UPDATE = "UPDATE Place SET name=@name WHERE idPlace=@id";
+        public static String SQL_DELETE_ID = "DELETE FROM Place WHERE id=@id";
+        public static String SQL_UPDATE = "UPDATE Place SET name=@name WHERE id = @id";
 
         /// <summary>
         /// Insert the record.
