@@ -38,6 +38,13 @@ namespace AuctionSystem
                 Console.WriteLine(v.Id + "  Znacka:" + v.vehicleModel.Manufacturer + " Model:" + v.vehicleModel.Model + " Podtyp:" + v.Podtyp + " City:" + v.city.Name + " Depo:" + v.depot.Name );
             }
 
+            Console.WriteLine("Seznam vsech company ve DB");
+            foreach (Company c in CompanyTable.Select())
+            {
+                Console.WriteLine(c.Id + " Nazev:" + c.Name);
+            }
+
+
             //VehicleTable.Insert(u, db);
             /*
             int count1 = VehicleTable.Select(db).Count;

@@ -11,3 +11,10 @@ D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\obj\Debug\AuctionS
 D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\obj\Debug\AuctionSystemORM.csprojResolveAssemblyReference.cache
 D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\bin\Debug\AuctionSystemORM.exe
 D:\WORK\Documents\Visual Studio 2015\Projects\ReposTransphoto\bin\Debug\AuctionSystemORM.pdb
+C:\Users\Saša\Source\Repos\11pinguine\Transphoto\bin\Debug\AuctionSystemORM.exe.config
+C:\Users\Saša\Source\Repos\11pinguine\Transphoto\bin\Debug\AuctionSystemORM.exe
+C:\Users\Saša\Source\Repos\11pinguine\Transphoto\bin\Debug\AuctionSystemORM.pdb
+C:\Users\Saša\Source\Repos\11pinguine\Transphoto\obj\Debug\AuctionSystemORM.csprojAssemblyReference.cache
+C:\Users\Saša\Source\Repos\11pinguine\Transphoto\obj\Debug\AuctionSystemORM.csproj.CoreCompileInputs.cache
+C:\Users\Saša\Source\Repos\11pinguine\Transphoto\obj\Debug\AuctionSystemORM.exe
+C:\Users\Saša\Source\Repos\11pinguine\Transphoto\obj\Debug\AuctionSystemORM.pdb
